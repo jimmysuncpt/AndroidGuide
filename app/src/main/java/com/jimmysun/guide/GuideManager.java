@@ -144,6 +144,12 @@ public class GuideManager {
     }
 
     public void dismiss() {
-        mDialog.dismiss();
+        if (mDialog != null && mDialog.isShowing()) {
+            try {
+                mDialog.dismiss();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
