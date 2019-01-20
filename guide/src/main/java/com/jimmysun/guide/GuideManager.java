@@ -35,7 +35,7 @@ public class GuideManager {
         mDialog = new Dialog(context, R.style.guide_dialog);
         mGuideView = new GuideView(context);
         mIsClickDismiss = true;
-        mStatusHeight = ScreenUtils.getStatusHeight(context);
+        mStatusHeight = ScreenUtils.getStatusBarHeight(context);
     }
 
     public GuideManager addRectHighlightView(View view) {

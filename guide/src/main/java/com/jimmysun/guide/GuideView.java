@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 
@@ -29,12 +28,12 @@ public class GuideView extends RelativeLayout {
         init();
     }
 
-    public GuideView(Context context, @Nullable AttributeSet attrs) {
+    public GuideView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public GuideView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public GuideView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }

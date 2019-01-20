@@ -1,8 +1,9 @@
-package com.jimmysun.guide.demo;
+package com.jimmysun.guidedemo;
 
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,7 +13,6 @@ import android.view.ViewTreeObserver;
 import android.widget.TextView;
 
 import com.jimmysun.guide.GuideManager;
-import com.jimmysun.guide.R;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,7 +26,7 @@ public class MyFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_my, container, false);
         mFragmentTextView = view.findViewById(R.id.tv_fragment);
@@ -34,13 +34,13 @@ public class MyFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mFragmentTextView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver
                 .OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                mFragmentTextView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                mFragmentTextView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 GuideManager guideManager = new GuideManager(getActivity());
                 guideManager.addRectHighlightView(mFragmentTextView);
                 TextView textView = new TextView(getContext());

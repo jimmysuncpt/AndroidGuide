@@ -1,4 +1,4 @@
-package com.jimmysun.guide.demo;
+package com.jimmysun.guidedemo;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -12,7 +12,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jimmysun.guide.GuideManager;
-import com.jimmysun.guide.R;
 
 /**
  *
@@ -42,7 +41,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                     .OnGlobalLayoutListener() {
                 @Override
                 public void onGlobalLayout() {
-                    holder.mLayout.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                    holder.mLayout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                     showGuide(holder);
                 }
             });
@@ -75,11 +74,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         Button mButton;
         LinearLayout mLayout;
 
-        public MyViewHolder(View itemView) {
+        MyViewHolder(View itemView) {
             super(itemView);
-            mTextView = (TextView) itemView.findViewById(R.id.text_view);
-            mButton = (Button) itemView.findViewById(R.id.button);
-            mLayout = (LinearLayout) itemView.findViewById(R.id.layout_item);
+            mTextView = itemView.findViewById(R.id.text_view);
+            mButton = itemView.findViewById(R.id.button);
+            mLayout = itemView.findViewById(R.id.layout_item);
         }
     }
 }

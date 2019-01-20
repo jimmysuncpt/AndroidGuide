@@ -1,9 +1,7 @@
-package com.jimmysun.guide.demo;
+package com.jimmysun.guidedemo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-
-import com.jimmysun.guide.R;
 
 public class MyFragmentActivity extends AppCompatActivity {
 

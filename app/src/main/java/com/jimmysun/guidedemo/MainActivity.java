@@ -1,4 +1,4 @@
-package com.jimmysun.guide.demo;
+package com.jimmysun.guidedemo;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -14,7 +14,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jimmysun.guide.GuideManager;
-import com.jimmysun.guide.R;
 
 public class MainActivity extends AppCompatActivity {
     private TextView mHelloTextView;
@@ -24,10 +23,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mHelloTextView = (TextView) findViewById(R.id.tv_hello);
-        mGuideButton = (Button) findViewById(R.id.btn_guide);
-        mListButton = (Button) findViewById(R.id.btn_list);
-        mFragmentButton = (Button) findViewById(R.id.btn_fragment);
+        mHelloTextView = findViewById(R.id.tv_hello);
+        mGuideButton = findViewById(R.id.btn_guide);
+        mListButton = findViewById(R.id.btn_list);
+        mFragmentButton = findViewById(R.id.btn_fragment);
         mGuideButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
                 .OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                mHelloTextView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                mHelloTextView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 showGuide();
             }
         });

@@ -30,7 +30,7 @@ public class CircleHighlightView extends HighlightView {
     public float centerY() {
         int[] location = new int[2];
         view.getLocationOnScreen(location);
-        return location[1] + view.getHeight() / 2f - ScreenUtils.getStatusHeight(view.getContext());
+        return location[1] + view.getHeight() / 2f - ScreenUtils.getStatusBarHeight(view.getContext());
     }
 
     public float getRadius() {
