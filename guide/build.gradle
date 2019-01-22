@@ -32,7 +32,7 @@ publish {
     userOrg = 'jimmysuncpt'
     groupId = 'com.jimmysun'
     artifactId = 'guide'
-    publishVersion = '1.0.1'
+    publishVersion = VERSION_NAME
     desc = '引导浮层'
     website = 'https://github.com/jimmysuncpt/Guide'
 }
