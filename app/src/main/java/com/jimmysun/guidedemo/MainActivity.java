@@ -57,38 +57,54 @@ public class MainActivity extends AppCompatActivity {
 
     private void showGuide() {
         final GuideManager guideManager = new GuideManager(this);
-        guideManager.addRectHighlightView(mHelloTextView, 80, 40, 80, 40);
+        guideManager.highlightViewInRect(mHelloTextView, Utils.dip2px(this, 20),
+                Utils.dip2px(this, 10), Utils.dip2px(this, 20), Utils.dip2px(this, 10));
 
         ImageView imageView = new ImageView(this);
+        imageView.setId(View.generateViewId());
         imageView.setImageResource(R.drawable.right_arrow);
-        guideManager.addViewRelativeTo(imageView, mHelloTextView, -20, 140);
+        guideManager.addViewRelativeTo(imageView, mHelloTextView, GuideManager.BELOW,
+                Utils.dip2px(this, -10), Utils.dip2px(this, 20));
         TextView textView = new TextView(this);
         textView.setText("这是一个TextView");
         textView.setTextColor(Color.WHITE);
         textView.setTextSize(16);
-        guideManager.addViewRelativeTo(textView, mHelloTextView, -100, 360);
+        RelativeLayout.LayoutParams layoutParams =
+                new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT);
+        layoutParams.addRule(RelativeLayout.BELOW, imageView.getId());
+        layoutParams.addRule(RelativeLayout.ALIGN_LEFT, imageView.getId());
+        layoutParams.topMargin = Utils.dip2px(this, 10);
+        layoutParams.leftMargin = Utils.dip2px(this, -20);
+        guideManager.addView(textView, layoutParams);
         guideManager.setCancelable(false);
         guideManager.show();
         guideManager.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 guideManager.clear();
-                guideManager.addOvalHighlightView(mGuideButton, 20, 20, 20, 20);
+                guideManager.highlightViewInOval(mGuideButton, Utils.dip2px(MainActivity.this,
+                        10), Utils.dip2px(MainActivity.this, 10), Utils.dip2px(MainActivity.this,
+                        10), Utils.dip2px(MainActivity.this, 10));
                 LinearLayout linearLayout = (LinearLayout) getLayoutInflater().inflate(R.layout
                         .layout_info, null);
-                guideManager.addViewRelativeTo(linearLayout, mGuideButton, -140, 200);
-                guideManager.updateView();
+                guideManager.addViewRelativeTo(linearLayout, mGuideButton,
+                        GuideManager.BELOW | GuideManager.ALIGN_RIGHT,
+                        Utils.dip2px(MainActivity.this, 20), Utils.dip2px(MainActivity.this, 20));
                 guideManager.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         guideManager.clear();
-                        guideManager.addCircleHighlightView(mListButton, 5);
-
+                        guideManager.highlightViewInCircle(mListButton,
+                                Utils.dip2px(MainActivity.this, 2.5f));
                         TextView textView = new TextView(MainActivity.this);
                         textView.setText("我知道了");
                         textView.setTextColor(Color.WHITE);
                         textView.setTextSize(16);
-                        textView.setPadding(20, 10, 20, 10);
+                        textView.setPadding(Utils.dip2px(MainActivity.this, 10),
+                                Utils.dip2px(MainActivity.this, 5),
+                                Utils.dip2px(MainActivity.this, 10),
+                                Utils.dip2px(MainActivity.this, 5));
                         textView.setBackgroundResource(R.drawable.solid_white_bg);
                         textView.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -101,11 +117,10 @@ public class MainActivity extends AppCompatActivity {
                                 .LayoutParams.WRAP_CONTENT);
                         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
                         layoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
-                        layoutParams.bottomMargin = 100;
+                        layoutParams.bottomMargin = Utils.dip2px(MainActivity.this, 50);
                         guideManager.addView(textView, layoutParams);
 
-                        guideManager.setClickDismiss(false);
-                        guideManager.updateView();
+                        guideManager.setCanceledOnTouch(false);
                     }
                 });
             }

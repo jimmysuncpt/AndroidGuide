@@ -1,6 +1,6 @@
 package com.jimmysun.guidedemo;
 
-import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,22 +14,20 @@ import android.widget.TextView;
 import com.jimmysun.guide.GuideManager;
 
 /**
- *
- *
  * @author SunQiang
  * @since 2018/3/13
  */
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
-    private Activity mActivity;
+    private Context mContext;
 
-    public MyAdapter(Activity activity) {
-        mActivity = activity;
+    public MyAdapter(Context context) {
+        mContext = context;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new MyViewHolder(LayoutInflater.from(mActivity).inflate(R.layout.recycler_item,
+        return new MyViewHolder(LayoutInflater.from(mContext).inflate(R.layout.recycler_item,
                 parent, false));
     }
 
@@ -60,12 +58,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     private void showGuide(MyViewHolder holder) {
-        GuideManager guideManager = new GuideManager(mActivity);
-        guideManager.addRectHighlightView(holder.mLayout);
-        TextView textView = new TextView(mActivity);
+        GuideManager guideManager = new GuideManager(mContext).highlightViewInRect(holder.mLayout);
+        TextView textView = new TextView(mContext);
         textView.setText("↓这是高亮区域");
         textView.setTextColor(Color.WHITE);
-        guideManager.addViewRelativeTo(textView, holder.mLayout, 5, -60);
+        guideManager.addViewRelativeTo(textView, holder.mLayout, GuideManager.ABOVE,
+                Utils.dip2px(mContext, 3), Utils.dip2px(mContext, 5));
         guideManager.show();
     }
 

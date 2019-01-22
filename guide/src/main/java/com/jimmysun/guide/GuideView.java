@@ -8,6 +8,7 @@ import android.graphics.PorterDuffXfermode;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,6 +23,7 @@ public class GuideView extends RelativeLayout {
 
     private Paint mPaint;
     private PorterDuffXfermode mPorterDuffXfermode;
+    private int mColor = 0xb2000000;
 
     public GuideView(Context context) {
         super(context);
@@ -39,6 +41,7 @@ public class GuideView extends RelativeLayout {
     }
 
     private void init() {
+        mHighlightViews = new ArrayList<>();
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.FILL);
@@ -49,13 +52,41 @@ public class GuideView extends RelativeLayout {
         setLayerType(LAYER_TYPE_SOFTWARE, null);
     }
 
-    public void setHighlightViews(List<HighlightView> highlightViews) {
-        mHighlightViews = highlightViews;
+    /**
+     * 添加高亮区域
+     *
+     * @param highlightView 高亮区域
+     */
+    public void addHighlightView(HighlightView highlightView) {
+        mHighlightViews.add(highlightView);
+    }
+
+    /**
+     * 清除所有高亮区域
+     */
+    public void clearHighlightViews() {
+        mHighlightViews.clear();
+    }
+
+    /**
+     * 设置透明度，默认0.7
+     *
+     * @param alpha 透明度
+     */
+    public void setAlpha(float alpha) {
+        if (alpha < 0) {
+            alpha = 0;
+        }
+        if (alpha > 1) {
+            alpha = 1;
+        }
+        int colorAlpha = (int) (0xff * alpha);
+        mColor = colorAlpha << 24;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawColor(0xb2000000);
+        canvas.drawColor(mColor);
         // 扣除高亮显示部分
         if (mHighlightViews != null) {
             mPaint.setXfermode(mPorterDuffXfermode);

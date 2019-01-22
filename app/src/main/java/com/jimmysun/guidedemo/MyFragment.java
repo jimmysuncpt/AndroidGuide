@@ -41,14 +41,14 @@ public class MyFragment extends Fragment {
             @Override
             public void onGlobalLayout() {
                 mFragmentTextView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                GuideManager guideManager = new GuideManager(getActivity());
-                guideManager.addRectHighlightView(mFragmentTextView);
+                GuideManager guideManager =
+                        new GuideManager(getContext()).setAlpha(0.5f).highlightViewInRect(mFragmentTextView);
                 TextView textView = new TextView(getContext());
-                textView.setText("百度理财百度理财百度理财百度理财百度理财百度理财");
+                textView.setText("文案内容文案内容文案内容文案内容文案内容文案内容");
                 textView.setTextColor(Color.WHITE);
-                textView.setWidth(500);
-                guideManager.addViewRelativeTo(textView, mFragmentTextView, 0, 120);
-                guideManager.show();
+                textView.setWidth(Utils.dip2px(getContext(), 200));
+                guideManager.addViewRelativeTo(textView, mFragmentTextView, GuideManager.BELOW, 0
+                        , Utils.dip2px(getContext(), 5)).show();
             }
         });
     }
