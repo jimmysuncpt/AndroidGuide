@@ -10,5 +10,5 @@
 <br/>
 引用方式：
 ```
-compile 'com.jimmysun:guide:1.0.1'
+compile 'com.jimmysun:guide:2.0.0'
 ```
