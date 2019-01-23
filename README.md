@@ -27,7 +27,7 @@ compile 'com.jimmysun:guide:2.0.0'
 
 示例
 ----
-参见[https://github.com/jimmysuncpt/Guide/tree/master/app](https://github.com/jimmysuncpt/Guide/tree/master/app)<br>
+代码参见[https://github.com/jimmysuncpt/Guide/tree/master/app](https://github.com/jimmysuncpt/Guide/tree/master/app)<br>
 截图：<br>
 <img src="/image/device-2019-01-22-193943.png" width="30%" height="30%"/> <img src="/image/device-2019-01-22-194114.png" width="30%" height="30%"/> <img src="/image/device-2019-01-22-194201.png" width="30%" height="30%"/> <img src="/image/device-2019-01-22-194235.png" width="30%" height="30%"/> <img src="/image/device-2019-01-22-194311.png" width="30%" height="30%"/><br>
 
@@ -55,7 +55,8 @@ guideManager.isShowing(); // 是否正在显示
 guideManager.show(); // 显示
 guideManager.dismiss(); // 消失
 ```
-如果要获取某个视图的具体显示位置，通常在这个视图的addOnGlobalLayoutListener()方法中使用GuideManager，代码如下：
+<B>注意事项</B><br>
+（1）如果要获取某个视图的具体显示位置，通常在这个视图的addOnGlobalLayoutListener()方法中使用GuideManager，代码如下：
 ```java
 view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
     @Override
@@ -65,4 +66,23 @@ view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlob
     }
 });
 
+```
+（2）如果想做多步骤引导，可以嵌套使用，代码如下：
+```java
+// 第一步...
+guideManager.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        guideManager.clear();
+        // 第二步...
+        guideManager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                guideManager.clear();
+                // 第三步...
+            }
+        });
+    }
+});
+guideManager.show();
 ```
