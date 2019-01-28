@@ -41,7 +41,7 @@ GuideManager guideManager = new GuideManager(context)
         .highlightViewInOval(view, paddingLeft, paddingTop, paddingRight, paddingBottom) // 以椭圆形的方式高亮显示视图，带间距
         .highlightViewInCircle(view) // 以圆形的方式高亮显示视图
         .highlightViewInCircle(view, paddingRadius) // 以圆形的方式高亮显示视图，带间距
-        .addViewRelativeTo(view, relativeTo, alignType, xMargin, yMargin) // 相对于某个视图添加一个视图
+        .addViewRelativeTo(view, relativeTo, alignType, xMargin, yMargin) // 相对于某个视图添加一个视图，见注意事项（3）
         .addView(view, params) // 以指定的布局参数添加一个视图
         .updateViewLayout(view, params) // 更新视图的布局参数
         .removeView(view) // 删除一个视图
@@ -55,7 +55,7 @@ guideManager.isShowing(); // 是否正在显示
 guideManager.show(); // 显示
 guideManager.dismiss(); // 消失
 ```
-<B>注意事项</B><br>
+### 注意事项
 （1）如果要获取某个视图的具体显示位置，通常在这个视图的addOnGlobalLayoutListener()方法中使用GuideManager，代码如下：
 ```java
 view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -86,3 +86,11 @@ guideManager.setOnClickListener(new View.OnClickListener() {
 });
 guideManager.show();
 ```
+（3）addViewRelativeTo(view, relativeTo, alignType, xMargin, yMargin)方法参数说明<br>
+- <B>view</B>：要添加的视图。<br>
+- <B>relativeTo</B>：相对的视图。<br>
+- <B>alignType</B>：对齐方式，可使用GuideManager的LEFT_OF、RIGHT_OF、ABOVE、BELOW、ALIGN_LEFT、ALIGN_TOP、ALIGN_RIGHT和ALIGN_BOTTOM，如果要使用多种对齐方式，可以采用“或”的方式，例如“GuideManager.RIGHT_OF | GuideManager.BELOW”。<br>
+- <B>xMargin</B>：横向的距离，单位px。<br>
+- <B>yMargin</B>：纵向的距离，单位px。<br>
+对齐方式及相对距离如图所示：<br>
+<img src="/image/align_type.png"/>
