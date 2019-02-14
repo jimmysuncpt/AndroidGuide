@@ -16,13 +16,13 @@ maven：
 <dependency>
 	<groupId>com.jimmysun</groupId>
 	<artifactId>guide</artifactId>
-	<version>2.0.0</version>
+	<version>2.0.1</version>
 	<type>pom</type>
 </dependency>
 ```
 gradle：
 ```
-compile 'com.jimmysun:guide:2.0.0'
+compile 'com.jimmysun:guide:2.0.1'
 ```
 
 示例
@@ -36,8 +36,10 @@ compile 'com.jimmysun:guide:2.0.0'
 ```java
 GuideManager guideManager = new GuideManager(context)
         .highlightViewInRect(view) // 以矩形的方式高亮显示视图
+        .highlightViewInRect(view, padding) // 以矩形的方式高亮显示视图，带间距
         .highlightViewInRect(view, paddingLeft, paddingTop, paddingRight, paddingBottom) // 以矩形的方式高亮显示视图，带间距
         .highlightViewInOval(view) // 以椭圆形的方式高亮显示视图
+        .highlightViewInOval(view, padding) // 以椭圆形的方式高亮显示视图，带间距
         .highlightViewInOval(view, paddingLeft, paddingTop, paddingRight, paddingBottom) // 以椭圆形的方式高亮显示视图，带间距
         .highlightViewInCircle(view) // 以圆形的方式高亮显示视图
         .highlightViewInCircle(view, paddingRadius) // 以圆形的方式高亮显示视图，带间距
