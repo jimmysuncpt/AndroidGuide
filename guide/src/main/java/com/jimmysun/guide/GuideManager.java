@@ -79,11 +79,22 @@ public class GuideManager {
     /**
      * 以矩形的方式高亮显示视图
      *
+     * @param view    要高亮显示的视图
+     * @param padding 上下左右的间距（px）
+     * @return GuideManager
+     */
+    public GuideManager highlightViewInRect(View view, int padding) {
+        return highlightViewInRect(view, padding, padding, padding, padding);
+    }
+
+    /**
+     * 以矩形的方式高亮显示视图
+     *
      * @param view          要高亮显示的视图
-     * @param paddingLeft   左间距
-     * @param paddingTop    上间距
-     * @param paddingRight  右间距
-     * @param paddingBottom 下间距
+     * @param paddingLeft   左间距（px）
+     * @param paddingTop    上间距（px）
+     * @param paddingRight  右间距（px）
+     * @param paddingBottom 下间距（px）
      * @return GuideManager
      */
     public GuideManager highlightViewInRect(View view, int paddingLeft, int paddingTop, int
@@ -111,11 +122,22 @@ public class GuideManager {
     /**
      * 以椭圆形的方式高亮显示视图
      *
+     * @param view    要高亮显示的视图
+     * @param padding 上下左右的间距（px）
+     * @return GuideManager
+     */
+    public GuideManager highlightViewInOval(View view, int padding) {
+        return highlightViewInOval(view, padding, padding, padding, padding);
+    }
+
+    /**
+     * 以椭圆形的方式高亮显示视图
+     *
      * @param view          要高亮显示的视图
-     * @param paddingLeft   左间距
-     * @param paddingTop    上间距
-     * @param paddingRight  右间距
-     * @param paddingBottom 下间距
+     * @param paddingLeft   左间距（px）
+     * @param paddingTop    上间距（px）
+     * @param paddingRight  右间距（px）
+     * @param paddingBottom 下间距（px）
      * @return GuideManager
      */
     public GuideManager highlightViewInOval(View view, int paddingLeft, int paddingTop, int
@@ -144,7 +166,7 @@ public class GuideManager {
      * 以圆形的方式高亮显示视图
      *
      * @param view          要高亮显示的视图
-     * @param paddingRadius 间距半径
+     * @param paddingRadius 间距半径（px）
      * @return GuideManager
      */
     public GuideManager highlightViewInCircle(View view, int paddingRadius) {
