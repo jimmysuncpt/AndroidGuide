@@ -34,6 +34,6 @@ public class CircleHighlightView extends HighlightView {
     }
 
     public float getRadius() {
-        return Math.max(view.getWidth(), view.getHeight()) / 2f + paddingRadius;
+        return (float) (Math.sqrt(Math.pow(view.getWidth() / 2.0, 2) + Math.pow(view.getHeight() / 2.0, 2)) + paddingRadius);
     }
 }

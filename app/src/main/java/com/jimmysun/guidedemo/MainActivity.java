@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -17,7 +16,7 @@ import com.jimmysun.guide.GuideManager;
 
 public class MainActivity extends AppCompatActivity {
     private TextView mHelloTextView;
-    private Button mGuideButton, mListButton, mFragmentButton;
+    private View mGuideButton, mListButton, mFragmentButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,8 +94,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         guideManager.clear();
-                        guideManager.highlightViewInCircle(mListButton,
-                                Utils.dip2px(MainActivity.this, 2.5f));
+                        guideManager.highlightViewInCircle(mListButton);
                         TextView textView = new TextView(MainActivity.this);
                         textView.setText("我知道了");
                         textView.setTextColor(Color.WHITE);
